@@ -1,13 +1,15 @@
-'use strict';
-
-// Declare app level module which depends on views, and components
-
-var myAppModule = angular.module('myApp', []);
 
 
-myApp.controller('textController',function() {
-      this.nom = " ";
+var myAppModule = angular.module('myAppModule', []);
+
+
+myAppModule.controller("texteController",function() {
+      this.nom = "";
+      var self = this;
       this.count = function () {
-          return 100-nom.length;
-      }
+          return 100-self.nom.length;
+      };
+      this.save = function(nom){
+        this.nom = nom;
+      };
 });

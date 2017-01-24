@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myAppModule">
+
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Note Application</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="app.css">
+ <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+
+</head>
+<body>
+<div class="panel panel-primary">
+  <div class="panel-heading">Ex 1 : Note Application</div>
+  <div class="panel-body">
+<div ng-controller="textController as texte">
+  <b>Note :</b>
+  <textarea class="form-control" rows="3"></textarea></div>
+  </div>
+  <button data-ng_click="save()" class="btn btn-primary">Enregistrer</button>
+  <button data-ng_click="save()" class="btn btn-primary">Effacer</button></br></div>
+
+</div>
+
+
+
+<script>
+    angular.module("myAppModule",[]).controller("premController",function(){this.message="Hello world";});
+</script>
+
+
+
+</body>
+</html>

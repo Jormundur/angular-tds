@@ -8,18 +8,21 @@
   <link rel="stylesheet" href="app.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
   <script src="app.js"></script>
 
+
 </head>
-<body>
-<div class="panel panel-primary" data-ng-controller="texteController as texte">
+<body background ="orig_696373.jpg">
+<div class="panel panel-primary" data-ng-controller="texteController as texte" style="width:45%;margin-left: 50px; margin-top: 50px">
   <div class="panel-heading">Ex 1 : Note Application</div>
   <div class="panel-body">
   <b>Note :</b>
-  <textarea class="form-control" rows="3" maxlength="100" data-ng-model="texte.nom" data-ng-change="texte.count()"></textarea>
+    <textarea class="form-control" rows="3" maxlength="100" data-ng-model="texte.nom" data-ng-change="texte.count();texte.change()"></textarea></br>
   <button data-ng_click="texte.save()" class="btn btn-primary">Enregistrer</button>
-  <button data-ng_click="texte.save()" class="btn btn-primary">Effacer</button></br>
-  <div class="bg-info">Nombre de caractères restant : {{texte.count()}}</div>
+    <button data-ng_click="texte.clear()" class="btn btn-primary">Effacer</button></br></br>
+    <div class="bg-info">Nombre de caractères restant : {{texte.count()}}</div></br>
+    <div ng-show="texte.vnote != ''" data-ng-class="texte.couleur()">{{texte.vnote}}</div>
   </div>
 </div>
 

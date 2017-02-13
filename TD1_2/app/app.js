@@ -1,6 +1,6 @@
 
 
-var servicesModule = angular.module('servicesApp', []);
+var servicesApp = angular.module('servicesApp', []);
 
 
 servicesApp.controller("servicesController",function(){

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="ListesApp">
+
+<head>
+  <meta charset="utf-8">
+  <title>Liste de produits</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="app.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
+  <script src="app.js"></script>
+
+
+</head>
+<body background ="orig_696373.jpg">
+<div ng-view class="toggle ng-scope" data-ng-controller="prodController as ctrlprod" style="margin-top: 50px;background-color:cornflowerblue;margin-left: auto;margin-right:auto;width:1200px;padding: 15px; heigth: 500px">
+  <h1 style="color:white;padding-top: 20px;padding-left:20px">Sélectionnez vos produits</h1>
+
+<div ng-show="ctrlprod.step=1">
+  <table>
+    <tr>
+      <td style="width:400px;"><p><b>Produits disponibles :</b></p>
+        <select style="width:500px" ng-dblclick="ctrlprod.addToIncluded()" size="8" multiple = "multiple" ng-options="dispoItem.title for dispoItem in ctrlprod.dispoItems" ng-model="ctrlprod.selectedDispoItems"></select>
+      </td>
+      <td style="width:200px;"align="center">
+        <input type="button" value="▶" style="width: 35px;height:35px" ng-click="ctrlprod.addToIncluded()"></br></br>
+        <input type="button" value="▶▶" style="width: 35px;height:35px" ng-click="ctrlprod.addAllToIncluded()"></br></br>
+        <input type="button" value="◀" style="width: 35px;height:35px" ng-click="ctrlprod.removeFromIncluded()"></br></br>
+       <input type="button" value="◀◀" style="width: 35px;height:35px" ng-click="ctrlprod.RemoveAllFromIncluded()"></br></br>
+      </td>
+      <td style="width:400px"><p><b>Produits sélectionnés :</b></p>
+  <select style="width:500px" ng-dblclick="ctrlprod.removeFromIncluded()" size="8" multiple = "multiple" ng-options="includedItem.title for includedItem in ctrlprod.includedItems" ng-model="ctrlprod.selectedIncludedItems"></select>
+
+</td>
+    </tr>
+  </table>
+</div>
+  <b>{{ctrlprod.includedItems.length}} produit(s) sélectionné(s)</b>
+  <input data-ng-click="ctrlprod.etape()" type="button" ng-show="ctrlprod.includedItems.length!= 0" value="Etape suivante ▶|" class="pull-right">
+</div>
+
+
+
+
+</body>
+</html>

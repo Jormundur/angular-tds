@@ -15,9 +15,10 @@
 </head>
 <body background ="orig_696373.jpg">
 <div ng-view class="toggle ng-scope" data-ng-controller="prodController as ctrlprod" style="margin-top: 50px;background-color:cornflowerblue;margin-left: auto;margin-right:auto;width:1200px;padding: 15px; heigth: 500px">
+
+<div ng-show="ctrlprod.step==1">
   <h1 style="color:white;padding-top: 20px;padding-left:20px">Sélectionnez vos produits</h1>
 
-<div ng-show="ctrlprod.step=1">
   <table>
     <tr>
       <td style="width:400px;"><p><b>Produits disponibles :</b></p>
@@ -35,9 +36,14 @@
 </td>
     </tr>
   </table>
-</div>
   <b>{{ctrlprod.includedItems.length}} produit(s) sélectionné(s)</b>
   <input data-ng-click="ctrlprod.etape()" type="button" ng-show="ctrlprod.includedItems.length!= 0" value="Etape suivante ▶|" class="pull-right">
+</div>
+  <div ng-show="ctrlprod.step==2">
+    <h1 style="text-align: center">Votre choix</h1>
+    <div data-ng-repeat="Select in ctrlprod.includedItems"><img ng-src="{{Select.image}}"/>{{Select.title}}</div>
+    <input type="button" ng-click="ctrlprod.etape()" value="Retour au menu précédent">
+  </div>
 </div>
 
 

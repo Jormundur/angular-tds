@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="ContactApp">
+
+<head>
+  <meta charset="utf-8">
+  <title>Liste de produits</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="app.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
+  <script src="app.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+
+</head>
+<body background ="orig_696373.jpg">
+<div class="panel panel-primary" data-ng-controller="ContactController as ctrlcont" style="width:50%;margin-left: 50px; margin-top: 50px">
+  <div class="panel-heading">Contacts</div>
+  <div class="ui input focus" style="padding-top: 10px;padding-left: 20px;width:100%;padding-right: 20px">
+    <input type="text" placeholder="Filtrer..."></div></br>
+    <table class="ui celled table" style="margin-left: 5%;width:90%;margin-right: 5%">
+      <tr data-ng-repeat="contact in ctrlcont.contacts" >
+        <div data-ng-show="{{contact.delete}} == false">
+        <td>{{contact.nom}}</td>
+        <td>{{contact.prenom}}</td>
+        <td>{{contact.mail}}</td>
+        <td>
+          <button class="ui icon button" data-ng-click="ctrlcont.changeOpe()">
+          <i class="edit icon"></i>
+          </button>
+          <button class="ui icon button" style="color:red" data-ng-click="ctrlcont.setDelete(contact)">
+            <i class="remove icon"></i>
+          </button>
+        </td>
+        </div>
+      </tr>
+    </table>
+  <button class="ui primary button" style="margin-left: 20px" data-ng-click="ctrlcont.changeOpe()">
+    Ajouter...
+  </button>
+  <button data-ng-show="ctrlcont.isDelete == 1" class="ui red button" data-ng-click="ctrlcont.cancelDelete()">Annuler la suppression.</button>
+<br/>
+
+  <br/>
+  <div data-ng-show="ctrlcont.visible == true">
+<h2  style="margin-left: 15px">{{ctrlcont.operation}} un contact<hr/></h2>
+  <div style="margin-left: 1%;margin-right: 1%;width: 98%">
+  <div class="ui input">
+    <input type="text" placeholder="Entrez un nom">
+  </div>
+  <div class="ui input">
+    <input type="text" placeholder="Prénom...">
+  </div>
+  <div class="ui input">
+    <input type="text" placeholder="Adresse email...">
+  </div>
+  <button class="ui primary button" style="margin-left: 20px">
+    Valider
+  </button>
+  <button class="ui primary button" style="margin-left: 20px" data-ng-click="ctrlcont.setInvisible()">
+    Annuler
+  </button>
+  </div>
+  </div>
+  <p style="margin-left:20px;margin-top:10px;margin-bottom: 10px;">
+    <ng-pluralize  count="ctrlcont.contacts.length" when="{'0': 'Aucun contact trouvé.',
+                     'one': '1 contact trouvé',
+                     'other': '{} contacts trouvés.'}"/></p>
+</div>
+</body>
+</html>

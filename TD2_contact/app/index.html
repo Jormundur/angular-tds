@@ -16,31 +16,32 @@
 
 </head>
 <body background ="orig_696373.jpg">
-<div class="panel panel-primary" data-ng-controller="ContactController as ctrlcont" style="width:50%;margin-left: 50px; margin-top: 50px">
+<div class="panel panel-primary"  data-ng-controller="ContactController as ctrlcont" style="width:60%;margin-left: 50px; margin-top: 50px">
   <div class="panel-heading">Contacts</div>
   <div class="ui input focus" style="padding-top: 10px;padding-left: 20px;width:100%;padding-right: 20px">
-    <input type="text" placeholder="Filtrer..."></div></br>
+    <input type="text" placeholder="Filtrer..." ng-model="filtre"></div></br>
     <table class="ui celled table" style="margin-left: 5%;width:90%;margin-right: 5%">
-      <tr data-ng-repeat="contact in ctrlcont.contacts" >
-        <div data-ng-show="{{contact.delete}} == false">
+      <tr ng-repeat="contact in ctrlcont.contacts |filtring|filter : filtre as results">
         <td>{{contact.nom}}</td>
         <td>{{contact.prenom}}</td>
         <td>{{contact.mail}}</td>
         <td>
-          <button class="ui icon button" data-ng-click="ctrlcont.changeOpe()">
+          <button class="ui icon button" data-ng-click="ctrlcont.modifContact(contact)">
           <i class="edit icon"></i>
           </button>
           <button class="ui icon button" style="color:red" data-ng-click="ctrlcont.setDelete(contact)">
             <i class="remove icon"></i>
           </button>
         </td>
-        </div>
       </tr>
     </table>
-  <button class="ui primary button" style="margin-left: 20px" data-ng-click="ctrlcont.changeOpe()">
+  <button class="ui primary button" style="margin-left: 20px" data-ng-click="ctrlcont.changeAjout()">
     Ajouter...
   </button>
-  <button data-ng-show="ctrlcont.isDelete == 1" class="ui red button" data-ng-click="ctrlcont.cancelDelete()">Annuler la suppression.</button>
+  <button data-ng-show="ctrlcont.isDelete == 1" class="ui red button" data-ng-click="ctrlcont.cancelDelete()">
+    <ng-pluralize  count="ctrlcont.countDel()" when="{'one': 'Annuler la supression (1).',
+                     'other': 'Annuler la supression ({}).'}"/>
+  </button>
 <br/>
 
   <br/>
@@ -48,24 +49,24 @@
 <h2  style="margin-left: 15px">{{ctrlcont.operation}} un contact<hr/></h2>
   <div style="margin-left: 1%;margin-right: 1%;width: 98%">
   <div class="ui input">
-    <input type="text" placeholder="Entrez un nom">
+    <form method="post">
+    <input type="text" placeholder="Nom..." ng-model="ctrlcont.tmpContact.nom">
+  <div class="ui input">
+    <input type="text" placeholder="Prénom..." ng-model="ctrlcont.tmpContact.prenom">
   </div>
   <div class="ui input">
-    <input type="text" placeholder="Prénom...">
+    <input type="email" placeholder="Adresse email..." ng-model="ctrlcont.tmpContact.mail">
   </div>
-  <div class="ui input">
-    <input type="text" placeholder="Adresse email...">
+  <button data-ng-click="ctrlcont.addContact()" class="ui primary button" style="margin-left: 20px">
+      Valider</button>
+  <input type="reset" value="Annuler" class="ui primary button" style="margin-left: 20px" data-ng-click="ctrlcont.setInvisible()">
+  </input>
+    </form>
   </div>
-  <button class="ui primary button" style="margin-left: 20px">
-    Valider
-  </button>
-  <button class="ui primary button" style="margin-left: 20px" data-ng-click="ctrlcont.setInvisible()">
-    Annuler
-  </button>
   </div>
   </div>
   <p style="margin-left:20px;margin-top:10px;margin-bottom: 10px;">
-    <ng-pluralize  count="ctrlcont.contacts.length" when="{'0': 'Aucun contact trouvé.',
+    <ng-pluralize  count="ctrlcont.contacts.length - ctrlcont.countDel()" when="{'0': 'Aucun contact trouvé.',
                      'one': '1 contact trouvé',
                      'other': '{} contacts trouvés.'}"/></p>
 </div>

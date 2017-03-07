@@ -16,7 +16,7 @@
 
 </head>
   <body>
-  <div class="panel panel-primary"  data-ng-controller="currencyController as ctrlcurr" style="width:1100px;margin-left: 20px; margin-top: 20px;">
+  <div class="panel panel-primary"  data-ng-controller="currencyController as ctrlcurr" style="width:1200px;margin-left: 20px; margin-top: 20px;">
     <div class="panel-heading">Currency Application</div>
     <form>
       <div style="margin-top: 10px;margin-left: 10px;padding-left:10px;padding-right:10px;margin-bottom: 10px">
@@ -30,11 +30,42 @@
     </select>
     <input type="button" class="ui primary button" data-ng-click="ctrlcurr.getResult()" value ="Convertir" style="margin-left: 10px;margin-right: 10px">
     <div class="ui input focus">
-      <input data-ng-model="ctrlcurr.result" type="text" readonly="readonly"style="background-color:lightgrey" style="margin-left:10px"></div>
+      <input data-ng-model="ctrlcurr.result" class="form-control ng-pristine ng-untouched ng-valid" type="text" readonly="readonly"style="margin-left:10px;background-color: lightgrey"></div>
       </div>
+        <input type="checkbox" data-ng-model="histo"><label>Historique</label>
       </div>
     </form>
+  <div data-ng-show="histo">
+    <fieldset>
+    <table class="ui single line table">
+    <thead>
+    <th>De</th>
+    <th>En</th>
+    <th>Tx</th>
+    <th>Montant</th>
+    <th>Date</th>
+    <th>Delta</th>
+    <th>Action</th>
+    </thead>
+    <tbody>
+    <tr data-ng-repeat="historique in ctrlcurr.historiques">
+      <td>{{historique.from.code}}</td>
+      <td>{{historique.to.code}}</td>
+      <td>{{historique.Tx}}</td>
+      <td>{{historique.result}}</td>
+      <td>{{historique.date | date:'dd/MM/yy'}}</td>
+      <td>0</td>
+      <td>
+        <button class="btn btn-info btn-xs" data-ng-click="updateHisto(historique)" title="Rafraîchir"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+        <button class="btn btn-danger btn-xs" data-ng-click="deleteHisto(historique)" title="Supprimer"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+      </td>
+    </tr>
+    </tbody>
 
+    </thead>
+  </table>
+    </fieldset>
+  </div>
   </div>
   </body>
   </html>

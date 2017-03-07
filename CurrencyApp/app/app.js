@@ -25,6 +25,9 @@ angular.module("CurrencyApp").controller("currencyController",['$http', function
     this.what= 1;
     this.result;
     this.temp;
+    this.date = new Date();
+    this.historiques = [];
+
 
     $http.get('data/currencymap.json').
     then(function(response) {
@@ -42,13 +45,22 @@ angular.module("CurrencyApp").controller("currencyController",['$http', function
         self.to = self.temp;
     };
 
+    this.deleteHisto = function(historique){
+     /*   for(var y = 0;y<self.selectedIncludedItems.length;y++){
+            var n = self.includedItems.indexOf(self.selectedIncludedItems[y]);
+            self.includedItems.splice(n,1)}*/
+    }
+
     this.getResult=function(){
         $http.jsonp('https://free.currencyconverterapi.com/api/v3/convert?compact=y&q='+self.from.code+'_'+self.to.code, {jsonpCallbackParam: 'callback'})
             .then(function(response) {
                 self.result=response.data[self.from.code+'_'+self.to.code].val*self.what;
-               // ...
+               var conversion = {from : self.from, to : self.to, Tx : response.data[self.from.code+'_'+self.to.code].val, result : self.result, date : new Date()}
+               self.historiques.push(conversion);
             });
   };
+
+
 
 }]);
 

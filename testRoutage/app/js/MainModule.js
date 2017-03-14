@@ -1,3 +1,6 @@
+
+angular.module("sampleApp", ['ngRoute']);
+
 angular.module("sampleApp").config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.

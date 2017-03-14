@@ -21,7 +21,7 @@
   <div class="ui input focus" style="padding-top: 10px;padding-left: 20px;width:100%;padding-right: 20px">
     <input type="text" placeholder="Filtrer..." ng-model="filtre"></div></br>
     <table class="ui celled table" style="margin-left: 5%;width:90%;margin-right: 5%">
-      <tr ng-repeat="contact in ctrlcont.contacts |filtring|filter : filtre as results">
+      <tr ng-repeat="contact in ctrlcont.contacts | filtring | filter : filtre as results">
         <td>{{contact.nom}}</td>
         <td>{{contact.prenom}}</td>
         <td>{{contact.mail}}</td>
